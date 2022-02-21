@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -11,6 +11,40 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" 
     integrity="sha384-ejwKkLla8gPP8t2u0eQyL0Q/4ItcnyveF505U0NIobD/SMsNyXrLti6CWaD0L52l" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet" id="bootstrap-css">
+    
+    <style>
+    
+    form {
+    width:60%;
+    margin-left:20%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    
+}
+
+.label1
+{
+display: inline-block; 
+width: 600px;
+
+}
+
+input{
+float: right;
+margin-right: 45%;
+width: 30%;
+
+}
+
+select{
+float: right;
+margin-right: 45%;
+width: 30%;
+
+}
+    </style>
 </head>
 
 <body>
@@ -50,9 +84,42 @@
         </header>
 
         <div id="corps">
-            <h1>Création de votre événement</h1>
+            
+            <br>
+
+	<h1 style="text-align: center">Organisation d'un nouvel evenement :</h1>
+	<br> <br>
+	
+    <form  th:action="@{/create_event.html}" th:object="${event}" method="post">
+    	<label class="label1">Nom: <input type="text" th:field="*{name}" /></label>
+    	<br><br>
+    	<label class="label1">Date: <input type="date" th:field="*{date}" /></label>
+    	<br><br>
+        <label class="label1">Ville: <input type="text" th:field="*{city}" /></label>
+        <br><br>
+        <label class="label1">Durée: <input type="text" th:field="*{duration}" /></label>
+        <br><br>
+		<label class="label1">Catégorie: <select name="Catégorie" th:field="*{category}">
+			<option value="Aucun">Choisir une catégorie</option>
+			<option value="Ramassage">Ramassage</option>
+			<option value="Nettoyage">Nettoyage</option>
+			<option value="Autre">Autre</option>
+		</select></label>	
+		<br><br>
+		<label class="label1">Description: <input type="text" th:field="*{description}" /></label>
+		<br><br>
+		<label class="label1"><span> Informations <br> importantes : </span> <input type="text" th:field="*{important}" /></label>
+		<br><br>
+	
+		<p><input style="width: 30%;float:none;margin-right: none" type="reset" value="Reinitialiser" /></p>
+		<p><input style="width:30%;float:none" type="submit" value="Nouvel evenement"  onclick="return confirm('Voulez vous valider cet evenement? Il sera validé par un membre de l administration prochainement. Vous allez pouvoir suivre son statut dans la rubrique Mes Evenements')"/></p>
+		
+
+    </form>
+
             
         </div>
+<br>
 
         <footer class="footer">
             <ul class="footer__nav">
