@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -51,7 +51,29 @@
 
         <div id="corps">
             <h1>Liste des événements</h1>
-            
+
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Date</th>
+			<th>City</th>
+			<th>Duration</th>
+			<th>Category</th>
+			<th>Description</th>
+			<th>Important</th>
+		</tr>
+		<tr th:each="event:${listEvent}">
+			<td th:utext="${event.name}"></td>
+			<td th:utext="${event.date}"></td>
+			<td th:utext="${event.city}"></td>
+			<td th:utext="${event.duration}"></td>
+			<td th:utext="${event.category}"></td>
+			<td th:utext="${event.description}"></td>
+			<td th:utext="${event.important}"></td>
+		</tr>
+	</table>
+
+<br>
         </div>
 
         <footer class="footer">
