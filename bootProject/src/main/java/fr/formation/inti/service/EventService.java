@@ -13,6 +13,8 @@ public interface EventService {
 	
 	List<Event>findAll();
 	
+	List<Event> findByFind(String text);
+	
 	Integer saveEvent(Event cust);
 	
 	void updateEvent(Event cust);

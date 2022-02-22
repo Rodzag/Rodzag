@@ -11,9 +11,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" 
     integrity="sha384-ejwKkLla8gPP8t2u0eQyL0Q/4ItcnyveF505U0NIobD/SMsNyXrLti6CWaD0L52l" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet" id="bootstrap-css">
+    
+    <style>
+    table {
+	border: 1px solid black;
+	padding: 0px;
+	width: 100%;
+	}
+
+	th, td {
+	border: 1px solid black;
+	text-align: center;
+	}
+	
+    </style>
+<script src="https://kit.fontawesome.com/86a95d9f82.js"></script>
+
 </head>
 
 <body>
+
     <div class="container">
 
         <header class="header">
@@ -50,8 +67,24 @@
         </header>
 
         <div id="corps">
-            <h1>Liste des événements</h1>
+        <br>
+            <h1 style="text-align: center">Liste des événements</h1>
+            
+            <form style="text-align: right; float: right" action="cherche">
+					<input type="text" id="text"
+						style="width: 200px; margin-top: 5px; text-align: center"
+						name="text" /> <input type="submit" value="Rechercher" />
+				</form>
+				<br>
+				
+		<p style="float: left">Nombre de résultats par page:
+		<a th:style="${size==5 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=5}">5</a>
+		<a th:style="${size==10 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=10}">10</a>
+		<a th:style="${size==20 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=20}">20</a>
+		</p>
 
+
+<br>
 	<table>
 		<tr>
 			<th>Name</th>
@@ -61,6 +94,8 @@
 			<th>Category</th>
 			<th>Description</th>
 			<th>Important</th>
+			<th>Modifier</th>
+			<th>Supprimer</th>
 		</tr>
 		<tr th:each="event:${listEvent}">
 			<td th:utext="${event.name}"></td>
@@ -70,10 +105,23 @@
 			<td th:utext="${event.category}"></td>
 			<td th:utext="${event.description}"></td>
 			<td th:utext="${event.important}"></td>
+			<td><a th:href="@{edit(i=${event.eventId})}">
+			<i class="fas fa-edit" style="height: 40px; width: 40px; margin-top: 20px"></i></a></td>
+			<td><a th:href="@{del(i=${event.eventId})}">
+			<i class="fas fa-trash-alt" style="height: 40px; width: 40px; margin-top: 20px" onclick="return confirm('Are you sure you want to delete?')"></i></a></td>
 		</tr>
 	</table>
+	<p style="text-align: center">
+		<a th:if="${!(page==1)}" th:href="@{'/event_list.html?page='+${page-1}+'&size='+${size}}"><i class="fa-solid fa-circle-arrow-left"></i></a>
+		
+		<a th:style="${page==1 ? 'color:red' : 'color:none'}" th:if="${i>size*0}" th:href="@{'/event_list.html?page=1&size='+${size}}">1</a>
+		<a th:style="${page==2 ? 'color:red' : 'color:none'}" th:if="${i>size*1}" th:href="@{'/event_list.html?page=2&size='+${size}}">2</a>
+		<a th:style="${page==3 ? 'color:red' : 'color:none'}" th:if="${i>size*2}" th:href="@{'/event_list.html?page=3&size='+${size}}">3</a>
 
+		<a th:if="${!(page==pageMax)}" th:href="@{'/event_list.html?page='+${page+1}+'&size='+${size}}"><i class="fa-solid fa-circle-arrow-right"></i></a>
+	</p>
 <br>
+
         </div>
 
         <footer class="footer">
@@ -146,6 +194,8 @@
         </footer>
 
     </div>
+    
 </body>
+
 
 </html>

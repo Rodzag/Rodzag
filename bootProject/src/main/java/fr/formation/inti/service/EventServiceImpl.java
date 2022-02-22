@@ -50,5 +50,10 @@ public class EventServiceImpl implements EventService {
 		return EventDao.findById(id);
 	}
 
+	@Override
+	public List<Event> findByFind(String text) {
+		return EventDao.findByFind(text);
+	}
+
 
 }
