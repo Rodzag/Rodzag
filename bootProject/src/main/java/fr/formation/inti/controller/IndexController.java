@@ -64,25 +64,36 @@ public class IndexController {
 	}
 	
 	@PostMapping("/create_event.html")
-	public String resutForm(Event event, Model model) {
-		
+	public String resutForm(Event event, Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text ) {
 		
 		eventService.saveEvent(event);
-		List<Event> list = eventService.findAll();
-		model.addAttribute("listEvent", list);	
+		
+		List<Event> list2 = eventService.findByFind(text);
+		int i = list2.size();
+		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
+		
+		model.addAttribute("i",i);
+		model.addAttribute("listEvent", list);
+		model.addAttribute("size", size);
+		model.addAttribute("page", page);
+		Integer j=0;
+		while(i>(size*j)) {
+			j++;
+		}
+		model.addAttribute("pageMax", j);
+		model.addAttribute("text", text);
+		
 		return "Pages/event_list";
 	}
 	
 	
 	@GetMapping("/event_list.html")
-	public String EventPageG2(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
-		Long i = eventPaginationService.findAll();
-		System.out.println(page);
-		System.out.println(size);
-		System.out.println(i);
+	public String EventPageG(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+		List<Event> list2 = eventService.findByFind(text);
+		int i = list2.size();
+		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
 		
 		model.addAttribute("i",i);
-		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
 		model.addAttribute("listEvent", list);
 		model.addAttribute("size", size);
 		model.addAttribute("page", page);
@@ -91,19 +102,19 @@ public class IndexController {
 			j++;
 		}
 		model.addAttribute("pageMax", j);
-		
+		model.addAttribute("text", text);
+		System.out.println("----------->"+ i);
+		model.addAttribute("text", text);
 		return "Pages/event_list";
 	}
 	
 	@PostMapping("/event_list.html")
-	public String EventPageP2(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
-		Long i = eventPaginationService.findAll();
-		System.out.println(page);
-		System.out.println(size);
-		System.out.println(i);
-		
-		model.addAttribute("i",i);
+	public String EventPageP(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+
+		List<Event> list2 = eventService.findByFind(text);
+		int i = list2.size();
 		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
+		model.addAttribute("i",i);
 		model.addAttribute("listEvent", list);
 		model.addAttribute("size", size);
 		model.addAttribute("page", page);
@@ -112,47 +123,125 @@ public class IndexController {
 			j++;
 		}
 		model.addAttribute("pageMax", j);
-		
+		model.addAttribute("text", text);
+		System.out.println("----------->"+ i);
 		return "Pages/event_list";
 	}
 	
 
 	
 	@GetMapping("/edit")
-	public String edit(Model model, @RequestParam Integer i) {
-		Optional<Event> event = eventService.findById(i);
-			
-		model.addAttribute("event", event);	
-		return "Pages/modif";
+	public String edit(Model model, @RequestParam Integer d, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+		
+		Optional<Event> event = eventService.findById(d);
+		eventService.updateEvent(event);
+		
+		List<Event> list2 = eventService.findByFind(text);
+		int i = list2.size();
+		
+		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
+		model.addAttribute("i",i);
+		model.addAttribute("listEvent", list);
+		model.addAttribute("size", size);
+		model.addAttribute("page", page);
+		Integer j=0;
+		while(i>(size*j)) {
+			j++;
+		}
+		model.addAttribute("pageMax", j);
+		model.addAttribute("text", text);
+		return "Pages/event_list";
+	}
+	
+	@GetMapping("/fEdit")
+	public String finEdit(Model model, @RequestParam Integer d, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+		
+		Optional<Event> event = eventService.findById(d);
+		eventService.updateEvent(event);
+		
+		List<Event> list2 = eventService.findByFind(text);
+		int i = list2.size();
+		
+		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
+		model.addAttribute("i",i);
+		model.addAttribute("listEvent", list);
+		model.addAttribute("size", size);
+		model.addAttribute("page", page);
+		Integer j=0;
+		while(i>(size*j)) {
+			j++;
+		}
+		model.addAttribute("pageMax", j);
+		model.addAttribute("text", text);
+		return "Pages/event_list";
 	}
 	
 	@GetMapping("/del")
-	public String del(Model model, @RequestParam Integer i) {
-		eventService.deleteEvent(i);
+	public String del(Model model, @RequestParam Integer d, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+		eventService.deleteEvent(d);
+
+		List<Event> list2 = eventService.findByFind(text);
+		int i = list2.size();
 		
-		List<Event> list = eventService.findAll();
+		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
+
+		model.addAttribute("i",i);
+		model.addAttribute("listEvent", list);
+		model.addAttribute("size", size);
+		model.addAttribute("page", page);
+		Integer j=0;
+		while(i>(size*j)) {
+			j++;
+		}
+		model.addAttribute("pageMax", j);
+		model.addAttribute("text", text);
 		
-		model.addAttribute("listEvent", list);	
 		return "Pages/event_list";
 	}
 	
 	@PostMapping("/cherche")
-	public String findP(Model model, @RequestParam String text) {
-	
-		List<Event> list = eventService.findByFind(text);
+	public String findP(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+
+		List<Event> list2 = eventService.findByFind(text);
+		int i = list2.size();
 		
-		model.addAttribute("listEvent", list);	
+		List<EventPagination> list = eventPaginationService.findByFind(page-1, size, text);
+
+		model.addAttribute("i",i);
+		model.addAttribute("listEvent", list);
+		model.addAttribute("size", size);
+		model.addAttribute("page", page);
+		Integer j=0;
+		while(i>(size*j)) {
+			j++;
+		}
+		model.addAttribute("pageMax", j);
+		model.addAttribute("text", text);
+		
 		return "Pages/event_list";
 	}
 	
 	@GetMapping("/cherche")
-	public String findG(Model model, @RequestParam String text) {
+	public String findG(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
 	
-		List<Event> list = eventService.findByFind(text);
-		
-		model.addAttribute("listEvent", list);	
+		List<Event> list2 = eventService.findByFind(text);
+		int i = list2.size();
+		List<EventPagination> list = eventPaginationService.findByFind(page-1, size, text);
+
+		model.addAttribute("i",i);
+		model.addAttribute("listEvent", list);
+		model.addAttribute("size", size);
+		model.addAttribute("page", page);
+		model.addAttribute("text", text);
+		Integer j=0;
+		while(i>(size*j)) {
+			j++;
+		}
+
+		model.addAttribute("pageMax", j);
 		return "Pages/event_list";
 	}
+
 	
 	
 	

@@ -13,11 +13,13 @@ public interface EventService {
 	
 	List<Event>findAll();
 	
-	List<Event> findByFind(String text);
+	List<Event>findByFind(String text);
 	
 	Integer saveEvent(Event cust);
 	
-	void updateEvent(Event cust);
+	void updateEvent(Optional<Event> event);
+	
+	void updateEvent(Event event);
 	
 	void deleteEvent(Event cust);
 	

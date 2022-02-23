@@ -66,4 +66,22 @@ public class EventPaginationServiceImpl implements EventPaginationService{
 		}
 	}
 
+	@Override
+	public List<EventPagination> findByFind(Integer pageNo, Integer pageSize, String text) {
+		org.springframework.data.domain.Pageable paging = PageRequest.of(pageNo, pageSize);
+		
+		Page<EventPagination> pagedResult = eventPaginationDao.findByFind(paging, text);
+		
+		if(pagedResult.hasContent()) {
+			return pagedResult.getContent();
+		}else {
+			return new ArrayList<EventPagination>();
+		}
+	}
+
+	@Override
+	public Long findByFind(String text) {
+		return eventPaginationDao.count();
+	}
+
 }

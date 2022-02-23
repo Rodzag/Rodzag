@@ -55,5 +55,13 @@ public class EventServiceImpl implements EventService {
 		return EventDao.findByFind(text);
 	}
 
+	@Override
+	public void updateEvent(Optional<Event> Event) {
+		EventDao.save(Event);
+		
+	}
+
+
+
 
 }

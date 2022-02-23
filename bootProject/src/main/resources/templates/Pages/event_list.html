@@ -71,9 +71,9 @@
             <h1 style="text-align: center">Liste des événements</h1>
             
             <form style="text-align: right; float: right" action="cherche">
-					<input type="text" id="text"
-						style="width: 200px; margin-top: 5px; text-align: center"
-						name="text" /> <input type="submit" value="Rechercher" />
+					<input type="text" id="text" style="width: 200px; margin-top: 5px; text-align: center"name="text" /> 
+					<input type="hidden" name="size"  th:value="${size}" />
+					<input type="submit" value="Rechercher" />
 				</form>
 				<br>
 				
@@ -81,6 +81,7 @@
 		<a th:style="${size==5 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=5}">5</a>
 		<a th:style="${size==10 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=10}">10</a>
 		<a th:style="${size==20 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=20}">20</a>
+		<a style="float: right; margin-left: 130px" th:if="${text!=''}" th:text="@{'Recherche avec : '+${text}}"></a>
 		</p>
 
 
@@ -105,20 +106,28 @@
 			<td th:utext="${event.category}"></td>
 			<td th:utext="${event.description}"></td>
 			<td th:utext="${event.important}"></td>
-			<td><a th:href="@{edit(i=${event.eventId})}">
-			<i class="fas fa-edit" style="height: 40px; width: 40px; margin-top: 20px"></i></a></td>
-			<td><a th:href="@{del(i=${event.eventId})}">
+			<td><a th:href="@{edit(d=${event.eventId})}">
+			<i class="fas fa-edit" style="height: 40px; width: 40px; margin-top: 20px"></i></a>
+			
+			</td>
+			<td>
+			<a th:href="@{edit(d=${event.eventId})}">
+			<i class="fas fa-edit" style="height: 40px; width: 40px; margin-top: 20px"></i></a>
+			<a th:href="@{del(d=${event.eventId})}">
 			<i class="fas fa-trash-alt" style="height: 40px; width: 40px; margin-top: 20px" onclick="return confirm('Are you sure you want to delete?')"></i></a></td>
 		</tr>
 	</table>
 	<p style="text-align: center">
-		<a th:if="${!(page==1)}" th:href="@{'/event_list.html?page='+${page-1}+'&size='+${size}}"><i class="fa-solid fa-circle-arrow-left"></i></a>
-		
-		<a th:style="${page==1 ? 'color:red' : 'color:none'}" th:if="${i>size*0}" th:href="@{'/event_list.html?page=1&size='+${size}}">1</a>
-		<a th:style="${page==2 ? 'color:red' : 'color:none'}" th:if="${i>size*1}" th:href="@{'/event_list.html?page=2&size='+${size}}">2</a>
-		<a th:style="${page==3 ? 'color:red' : 'color:none'}" th:if="${i>size*2}" th:href="@{'/event_list.html?page=3&size='+${size}}">3</a>
+		<a th:if="${!(page==1)}" th:href="@{'/cherche?page='+${page-1}+'&size='+${size}+'&text='+${text}}"><i class="fa-solid fa-circle-arrow-left"></i></a>
+	
+		<a th:style="${page==1 ? 'color:red' : 'color:none'}" th:if="${i>size*0}" th:href="@{'/cherche?page=1&size='+${size}+'&text='+${text}}">1</a>
+		<a th:style="${page==2 ? 'color:red' : 'color:none'}" th:if="${i>size*1}" th:href="@{'/cherche?page=2&size='+${size}+'&text='+${text}}">2</a>
+		<a th:style="${page==3 ? 'color:red' : 'color:none'}" th:if="${i>size*2}" th:href="@{'/cherche?page=3&size='+${size}+'&text='+${text}}">3</a>
+		<a th:style="${page==4 ? 'color:red' : 'color:none'}" th:if="${i>size*3}" th:href="@{'/cherche?page=4&size='+${size}+'&text='+${text}}">4</a>
+		<a th:style="${page==5 ? 'color:red' : 'color:none'}" th:if="${i>size*4}" th:href="@{'/cherche?page=5&size='+${size}+'&text='+${text}}">5</a>
+		<a th:style="${page==6 ? 'color:red' : 'color:none'}" th:if="${i>size*5}" th:href="@{'/cherche?page=6&size='+${size}+'&text='+${text}}">6</a>
 
-		<a th:if="${!(page==pageMax)}" th:href="@{'/event_list.html?page='+${page+1}+'&size='+${size}}"><i class="fa-solid fa-circle-arrow-right"></i></a>
+		<a th:if="${!(page==pageMax)}" th:href="@{'/cherche?page='+${page+1}+'&size='+${size}+'&text='+${text}}"><i class="fa-solid fa-circle-arrow-right"></i></a>
 	</p>
 <br>
 
