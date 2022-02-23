@@ -1,11 +1,22 @@
 package fr.formation.inti.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+
 
 
 
@@ -20,11 +31,13 @@ public class User implements java.io.Serializable {
 	private Integer userId;
 	private String firstName;
 	private String lastName;
-	private Integer age;
 	private String city;
+	private Integer age;	
 	private String gender;
 	private String email;
-	
+	private String phone;
+	private String login;
+	private String password;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -83,28 +96,60 @@ public class User implements java.io.Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@Column(name = "PHONE")
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	@Column(name = "LOGIN")
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	
+	@Column(name = "PASSWORD")
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public User() {
 		super();
 	}
-	public User(Integer userId, String firstName, String lastName, Integer age, String city, String gender,
-			String email) {
+	
+	public User(Integer userId, String firstName, String lastName, String city, Integer age, String gender,
+			String email, String phone, String login, String password) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.age = age;
 		this.city = city;
+		this.age = age;
 		this.gender = gender;
 		this.email = email;
+		this.phone = phone;
+		this.login = login;
+		this.password = password;
 	}
+	
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
-				+ ", city=" + city + ", gender=" + gender + ", email=" + email + "]";
+		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", city=" + city
+				+ ", age=" + age + ", gender=" + gender + ", email=" + email + ", phone=" + phone + ", login=" + login
+				+ ", password=" + password + "]";
 	}
 	
 	
-
+	
+	
 	
 	
 }
