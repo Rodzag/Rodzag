@@ -131,32 +131,17 @@ public class IndexController {
 
 	
 	@GetMapping("/edit")
-	public String edit(Model model, @RequestParam Integer d, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+	public String edit(Model model, @RequestParam Integer d) {
 		
-		Optional<Event> event = eventService.findById(d);
-		eventService.updateEvent(event);
-		
-		List<Event> list2 = eventService.findByFind(text);
-		int i = list2.size();
-		
-		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
-		model.addAttribute("i",i);
-		model.addAttribute("listEvent", list);
-		model.addAttribute("size", size);
-		model.addAttribute("page", page);
-		Integer j=0;
-		while(i>(size*j)) {
-			j++;
-		}
-		model.addAttribute("pageMax", j);
-		model.addAttribute("text", text);
-		return "Pages/event_list";
+		Event event = eventService.findById2(d);
+		model.addAttribute("event", event);
+		return "Pages/change_event";
 	}
 	
 	@GetMapping("/fEdit")
 	public String finEdit(Model model, @RequestParam Integer d, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
 		
-		Optional<Event> event = eventService.findById(d);
+		Event event = eventService.findById2(d);
 		eventService.updateEvent(event);
 		
 		List<Event> list2 = eventService.findByFind(text);
