@@ -89,10 +89,10 @@ public class IndexController {
 	
 	
 	@GetMapping("/event_list.html")
-	public String EventPageG(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text, @RequestParam(defaultValue = "") String message) {
+	public String EventPageG(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text, @RequestParam(defaultValue = "") String message, @RequestParam(defaultValue = "") String name) {
 		List<Event> list2 = eventService.findByFind(text);
 		int i = list2.size();
-		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
+		List<EventPagination> list = eventPaginationService.findByFind(page-1, size, text);
 		
 		model.addAttribute("i",i);
 		model.addAttribute("listEvent", list);
@@ -106,6 +106,9 @@ public class IndexController {
 		model.addAttribute("text", text);
 		System.out.println("----------->"+ i);
 		model.addAttribute("text", text);
+		if (!name.isEmpty()) {
+		model.addAttribute("message", "Vous etes bien inscrit à l'evenement "+name );
+		}
 		return "Pages/event_list";
 	}
 	
@@ -114,7 +117,7 @@ public class IndexController {
 
 		List<Event> list2 = eventService.findByFind(text);
 		int i = list2.size();
-		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
+		List<EventPagination> list = eventPaginationService.findByFind(page-1, size, text);
 		model.addAttribute("i",i);
 		model.addAttribute("listEvent", list);
 		model.addAttribute("size", size);
@@ -148,7 +151,7 @@ public class IndexController {
 		List<Event> list2 = eventService.findByFind(text);
 		int i = list2.size();
 		
-		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
+		List<EventPagination> list = eventPaginationService.findByFind(page-1, size, text);
 		model.addAttribute("i",i);
 		model.addAttribute("listEvent", list);
 		model.addAttribute("size", size);
@@ -178,7 +181,7 @@ public class IndexController {
 		List<Event> list2 = eventService.findByFind(text);
 		int i = list2.size();
 		
-		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
+		List<EventPagination> list = eventPaginationService.findByFind(page-1, size, text);
 		model.addAttribute("i",i);
 		model.addAttribute("listEvent", list);
 		model.addAttribute("size", size);
@@ -202,7 +205,7 @@ public class IndexController {
 		List<Event> list2 = eventService.findByFind(text);
 		int i = list2.size();
 		
-		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
+		List<EventPagination> list = eventPaginationService.findByFind(page-1, size, text);
 
 		model.addAttribute("i",i);
 		model.addAttribute("listEvent", list);
