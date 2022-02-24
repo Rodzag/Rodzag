@@ -684,6 +684,24 @@ nav>ul li:hover .sous {
     background: #fff;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+#corps faq-section{
+	margin: 40px 0;
+	width:100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+	border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.data2{
+	margin: 40px 0;
+	width:100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+	border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
 
 .footer {
 	display: flex;
@@ -831,6 +849,29 @@ footer i{
 	color: #28cec0;
 }
 
+.data1 h2{
+	text-align:center;
+	font-weight:bold;
+	
+}
+.data1 h5{
+	text-align:center;
+	font-weight:bold;
+}
+.data1 li {
+	width: 32%;
+	margin-inline: auto;
+	text-align: center;
+	display: inline-block;
+	font-family: 'Lato';
+	padding: 0, 0;
+	border-right: solid 1px #bdc3c7;
+}
+
+
+
+
+
 .data li {
 	width: 32%;
 	margin-inline: auto;
@@ -839,6 +880,7 @@ footer i{
 	font-family: 'Lato';
 	padding: 0, 5em;
 	border-right: solid 1px #bdc3c7;
+	text-transform: uppercase;
 }
 
 .data p {
