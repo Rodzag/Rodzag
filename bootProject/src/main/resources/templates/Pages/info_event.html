@@ -48,6 +48,7 @@
 
         </header>
 
+
        		<br>
         <div id="corps" style="text-align: center">
             <h3 th:utext="@{'Information de l évenement '+${event.name}}"></h3>
@@ -58,15 +59,17 @@
 			<p th:utext="@{'Date : '+${event.date}}"></p>
 			<p th:utext="@{'Ville : '+${event.city}}"></p>
 			<p th:utext="@{'Duration : '+${event.duration}}"></p>
+
 			<p th:utext="@{'Categorie : '+${event.category}}"></p>
 			<p th:utext="@{'Description : '+${event.description}}"></p>
 			<p th:utext="@{'Informations importantes : '+${event.important}}"></p>
 		
+
 			<form action="/event_list.html">
             <input type="submit" value="Rejoindre cet evenement" onclick="return confirm('Voulez vous vraiment rejoindre cet événement?')">
             <input type="submit" value="Retour à la liste" style="margin-left: 10px">
             </form>
-            
+
             
         </div>
         <br>

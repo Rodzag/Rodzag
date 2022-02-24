@@ -242,14 +242,18 @@ public class IndexController {
 	
 	@GetMapping("/info_event")
 	public String infoEventG(Model model, @RequestParam Integer d) {
+
 		Event event = eventService.findById2(d);
+
 		model.addAttribute("event", event);
 		return "Pages/info_event";
 	}
 	
 	@PostMapping("/info_event")
 	public String infoEventP(Model model, @RequestParam Integer d) {
+
 		Event event = eventService.findById2(d);
+
 		model.addAttribute("event", event);
 		return "Pages/info_event";
 	}
