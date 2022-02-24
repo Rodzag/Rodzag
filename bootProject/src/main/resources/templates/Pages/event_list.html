@@ -80,8 +80,9 @@
 		<a th:style="${size==5 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=5}">5</a>
 		<a th:style="${size==10 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=10}">10</a>
 		<a th:style="${size==20 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=20}">20</a>
-		<a style="float: right; margin-left: 130px" th:text="@{'Il y a '+${i}+' résultat(s)'}"></a>
-		<a style="float: right; margin-left: 130px" th:if="${text!=''}" th:text="@{'Recherche avec : '+${text}}"></a>
+		<a style="float: right; margin-left: 100px; color:red; font-weight:bold" th:if="${message!=''}" th:text="@{${message}}"></a>
+		<a style="float: right; margin-left: 100px" th:if="${text!=''}" th:text="@{'Recherche avec : '+${text}}"></a>
+		<a style="float: right; margin-left: 50px" th:text="@{'Il y a '+${i}+' résultat(s)'}"></a>
 		</p>
 
 
