@@ -255,8 +255,17 @@ public class IndexController {
 		return "Pages/galerie";
 	}
 	
-	@GetMapping("/info_event.html")
-	public String infoEvent() {
+	@GetMapping("/info_event")
+	public String infoEventG(Model model, @RequestParam Integer d) {
+		Optional<Event> event = eventService.findById(d);
+		model.addAttribute("event", event);
+		return "Pages/info_event";
+	}
+	
+	@PostMapping("/info_event")
+	public String infoEventP(Model model, @RequestParam Integer d) {
+		Optional<Event> event = eventService.findById(d);
+		model.addAttribute("event", event);
 		return "Pages/info_event";
 	}
 	

@@ -70,7 +70,7 @@
         <br>
             <h1 style="text-align: center">Liste des événements</h1>
             
-            <form style="text-align: right; float: right" action="cherche">
+            <form style="text-align: right; float: right; margin-bottom: 10px" action="cherche">
 					<input type="text" id="text" style="width: 200px; margin-top: 5px; text-align: center"name="text" /> 
 					<input type="hidden" name="size"  th:value="${size}" />
 					<input type="submit" value="Rechercher" />
@@ -81,6 +81,7 @@
 		<a th:style="${size==5 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=5}">5</a>
 		<a th:style="${size==10 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=10}">10</a>
 		<a th:style="${size==20 ? 'color:red' : 'color:none'}" th:href="@{/event_list.html?page=1&size=20}">20</a>
+		<a style="float: right; margin-left: 130px" th:text="@{'Il y a '+${i}+' résultat(s)'}"></a>
 		<a style="float: right; margin-left: 130px" th:if="${text!=''}" th:text="@{'Recherche avec : '+${text}}"></a>
 		</p>
 
@@ -88,15 +89,13 @@
 <br>
 	<table>
 		<tr>
-			<th>Name</th>
+			<th>Nom</th>
 			<th>Date</th>
-			<th>City</th>
-			<th>Duration</th>
-			<th>Category</th>
-			<th>Description</th>
-			<th>Important</th>
-			<th>Modifier</th>
-			<th>Supprimer</th>
+			<th>Ville</th>
+			<th>Durée</th>
+			<th>Categorie</th>
+			<th>Details</th>
+			<th>Gestion</th>
 		</tr>
 		<tr th:each="event:${listEvent}">
 			<td th:utext="${event.name}"></td>
@@ -104,10 +103,8 @@
 			<td th:utext="${event.city}"></td>
 			<td th:utext="${event.duration}"></td>
 			<td th:utext="${event.category}"></td>
-			<td th:utext="${event.description}"></td>
-			<td th:utext="${event.important}"></td>
-			<td><a th:href="@{edit(d=${event.eventId})}">
-			<i class="fas fa-edit" style="height: 40px; width: 40px; margin-top: 20px"></i></a>
+			<td><a th:href="@{info_event(d=${event.eventId})}">
+			<i class="fa-solid fa-magnifying-glass-plus" style="height: 40px; width: 40px; margin-top: 30px"></i></a>
 			
 			</td>
 			<td>

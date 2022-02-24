@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -50,7 +50,17 @@
         </header>
 
         <div id="corps">
-            <h1>Information de l'événement</h1>
+            <h1 th:utext="@{'Information de l'évenement'+${event.name}}"></h1>
+            
+
+			<p th:utext="@{'Nom de l'evenement: '+${event.name}}"></p>
+			<p th:utext="@{'Date : '+${event.date}}"></p>
+			<p th:utext="@{'Ville : '+${event.city}}"></p>
+			<p th:utext="@{'Durartion : '+${event.duration}}"></p>
+			<p th:utext="@{'Categorie : '+${event.category}}"></p>
+			<p th:utext="@{'Description : '+${event.description}}"></p>
+			<p th:utext="@{'Informations importantes : '+${event.important}}"></p>
+		
             
         </div>
 
