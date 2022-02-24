@@ -91,22 +91,22 @@ width: 30%;
 	<br> <br>
 	
     <form  th:action="@{/create_event.html}" th:object="${event}" method="post">
-    	<label class="label1">Nom: <input type="text" th:field="*{name}" /></label>
+    	<label class="label1">Nom: <input type="text" th:field="*{name}" required/></label>
     	<br><br>
-    	<label class="label1">Date: <input type="date" th:field="*{date}" /></label>
+    	<label class="label1">Date: <input type="date" th:field="*{date}" required/></label>
     	<br><br>
-        <label class="label1">Ville: <input type="text" th:field="*{city}" /></label>
+        <label class="label1">Ville: <input type="text" th:field="*{city}" required/></label>
         <br><br>
-        <label class="label1">Durée: <input type="text" th:field="*{duration}" /></label>
+        <label class="label1">Durée: <input type="text" th:field="*{duration}" required/></label>
         <br><br>
-		<label class="label1">Catégorie: <select name="Catégorie" th:field="*{category}">
+		<label class="label1">Catégorie: <select name="Catégorie" th:field="*{category}" required>
 			<option value="Aucun">Choisir une catégorie</option>
 			<option value="Ramassage">Ramassage</option>
 			<option value="Nettoyage">Nettoyage</option>
 			<option value="Autre">Autre</option>
 		</select></label>	
 		<br><br>
-		<label class="label1">Description: <input type="text" th:field="*{description}" /></label>
+		<label class="label1">Description: <input type="text" th:field="*{description}" required/></label>
 		<br><br>
 		<label class="label1"><span> Informations <br> importantes : </span> <input type="text" th:field="*{important}" /></label>
 		<br><br>
