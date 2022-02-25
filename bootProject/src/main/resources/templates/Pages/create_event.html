@@ -38,6 +38,13 @@ width: 30%;
 
 }
 
+textarea{
+float: right;
+margin-right: 45%;
+width: 30%;
+
+}
+
 select{
 float: right;
 margin-right: 45%;
@@ -89,7 +96,7 @@ width: 30%;
 	<h1 style="text-align: center">Organisation d'un nouvel evenement :</h1>
 	<br> <br>
 	
-    <form  th:action="@{/create_event.html}" th:object="${event}" method="post">
+    <form  th:action="@{/create_event.html}" th:object="${event}" method="post" id="1">
     	<label class="label1">Nom: <input type="text" th:field="*{name}" required/></label>
     	<br><br>
     	<label class="label1">Date: <input type="date" th:field="*{date}" required/></label>
@@ -105,7 +112,7 @@ width: 30%;
 			<option value="Autre">Autre</option>
 		</select></label>	
 		<br><br>
-		<label class="label1">Description: <input type="text" th:field="*{description}" required/></label>
+		<label class="label1">Description: <textarea th:field="*{description}" form="1" required/></textarea></label>
 		<br><br>
 		<label class="label1"><span> Informations <br> importantes : </span> <input type="text" style="margin-top: -12px" th:field="*{important}" /></label>
 		<br><br>

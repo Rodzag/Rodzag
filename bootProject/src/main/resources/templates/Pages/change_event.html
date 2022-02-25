@@ -31,6 +31,12 @@ display: inline-block;
 width: 600px;
 
 }
+textarea{
+float: right;
+margin-right: 35%;
+width: 40%;
+
+}
 
 input{
 float: right;
@@ -105,20 +111,25 @@ width: 40%;
 			<option value="Autre">Autre</option>
 		</select></label>	
 		<br><br>
-		<label class="label1">Description: <input type="text" th:field="*{description}" required/></label>
+		<label class="label1">Description: <textarea th:field="*{description}" required/></textarea></label>
 		<br><br>
 		<label class="label1"><span> Informations <br> importantes : </span> <input type="text" style="margin-top: -12px;" th:field="*{important}" /></label>
 		<br><br>
 	
-		<p><input style="width: 30%;float:none;margin-right: none" type="reset" value="Reinitialiser" /></p>
-		<p><input style="width:30%;float:none" type="submit" value="Modifier l'evenement"  onclick="return confirm('Voulez vous vraiment modifier cet evenement? Il sera validé par un membre de l administration prochainement. Vous allez pouvoir suivre son statut dans la rubrique Mes Evenements')"/></p>
+		<p><input style="width: 35%;float:none;margin-right: none" type="reset" value="Reinitialiser" /></p>
+		<p><input style="width:35%;float:none" type="submit" value="Modifier l'evenement"  onclick="return confirm('Voulez vous vraiment modifier cet evenement? Il sera validé par un membre de l administration prochainement. Vous allez pouvoir suivre son statut dans la rubrique Mes Evenements')"/></p>
 		
 		<input type="hidden" name="d"  th:value="${event.eventId}" />
 
     </form>
+			<form action="/event_list.html">
+				<input type="submit" value="Retour à la liste" style="margin-left: 20px; margin-top: -20px">
+			</form>
+			
+			<br>
 
-            
-        </div>
+
+		</div>
 
 
         <footer class="footer">

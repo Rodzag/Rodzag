@@ -67,9 +67,12 @@
 
 			<form action="/event_list.html">
             <input type="submit" value="Rejoindre cet evenement" onclick="return confirm('Voulez vous vraiment rejoindre cet événement?')">
-            <input type="submit" value="Retour à la liste" style="margin-left: 10px">
+            <input type="hidden" name="name" th:value="${event.name}">
             </form>
-
+            <br>
+            <form action="/event_list.html">
+            <input type="submit" value="Retour à la liste" style="margin-left: 10px">
+			</form>
             
         </div>
         <br>
