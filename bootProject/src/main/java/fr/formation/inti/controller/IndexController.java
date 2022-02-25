@@ -1,7 +1,6 @@
 package fr.formation.inti.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,7 +71,7 @@ public class IndexController {
 		
 		List<Event> list2 = eventService.findByFind(text);
 		int i = list2.size();
-		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
+		List<EventPagination> list = eventPaginationService.findByFind(page-1, size, text);
 		
 		model.addAttribute("i",i);
 		model.addAttribute("listEvent", list);
@@ -267,15 +266,15 @@ public class IndexController {
 		return "Pages/event_list";
 	}
 	
-	 @RequestMapping(value = "/login", method = RequestMethod.POST)
-	 public String loginPage(Model model) {
-		 /*if (isCurrentAuthenticationAnonymous()) {
-				return "login";
-		    } else {
-		    	return "redirect:/list";  
-		    }*/
-		 return "accueil.html";
-	 }
+//	 @RequestMapping(value = "/login; /", method = RequestMethod.POST)
+//	 public String loginPage(Model model) {
+//		 if (isCurrentAuthenticationAnonymous()) {
+//				return "login";
+//		    } else {
+//		    	return "redirect:/list";  
+//		    }
+//		 return "index.html";
+//	 }
 	
 	@GetMapping("/FAQ.html")
 	public String FAQ() {
