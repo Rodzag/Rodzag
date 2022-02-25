@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.formation.inti.entity.Event;
@@ -264,9 +266,16 @@ public class IndexController {
 		model.addAttribute("pageMax", j);
 		return "Pages/event_list";
 	}
-
 	
-	
+	 @RequestMapping(value = "/login", method = RequestMethod.POST)
+	 public String loginPage(Model model) {
+		 /*if (isCurrentAuthenticationAnonymous()) {
+				return "login";
+		    } else {
+		    	return "redirect:/list";  
+		    }*/
+		 return "accueil.html";
+	 }
 	
 	@GetMapping("/FAQ.html")
 	public String FAQ() {
