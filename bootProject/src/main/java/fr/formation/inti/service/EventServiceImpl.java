@@ -61,6 +61,11 @@ public class EventServiceImpl implements EventService {
 		
 	}
 
+	@Override
+	public Event findById2(Integer id) {
+		return EventDao.findById2(id);
+	}
+
 
 
 

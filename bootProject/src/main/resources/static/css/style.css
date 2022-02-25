@@ -51,6 +51,504 @@ p {
 	line-height: 1.5;
 }
 
+
+/*--------------------------------------galerie-------------------*/
+*{box-sizing: border-box}
+
+
+img{max-width:100%}
+
+
+
+.corps_gal h1 {
+
+		text-shadow:0 1px 0 #ccc, 
+		0 2px 0 #c9c9c9,
+		0 3px 0 #bbb,
+		0 4px 0 #b9b9b9,
+		0 5px 0 #aaa,
+		0 6px 1px rgba(0,0,0,.1),
+		0 0 5px rgba(0,0,0,.1),
+		0 1px 3px rgba(0,0,0,.3),
+		0 3px 5px rgba(0,0,0,.2),
+		0 5px 10px rgba(0,0,0,.25),
+		0 10px 10px rgba(0,0,0,.2),
+		0 20px 20px rgba(0,0,0,.15);color:#fff;
+		font-weight: bolder;
+		letter-spacing: 3px;
+
+}
+.corps_gal h3 {
+	
+	font-weight: bolder;
+		text-decoration: underline solid #000000f5;
+	
+		color: rgba(0, 0, 0, 0.76);
+	}
+.diap1{
+
+		margin: 40px 0;
+		width: 100%;
+		padding: 30px;
+		border: 1px solid #f1f1f1;
+		border-radius: 20px;
+		background: #fff;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	}
+	
+
+	
+	
+	
+.caroussel_diapo input{
+	position:absolute;left:-9999px}
+    
+
+.caroussel_diapo{	
+position:relative;
+text-align:center;
+margin:0;
+
+}
+
+
+.contenu_carou {
+
+	width:400px;
+	height: 265px;
+	margin-left : 300px;
+	
+	perspective:4000px}
+
+
+.caroussel{
+
+transform-style:preserve-3d;
+position:relative;
+text-align: center;
+width:400px;
+height:265px;
+transition:1s
+	
+	}
+
+.caroussel img {
+	
+position:absolute;
+top:0;left: 0;
+
+outline:1px solid transparent;
+backface-visibility:hidden;
+transition:1s
+	
+	}
+
+.caroussel img{filter:blur(3px);opacity:.8}	
+.caroussel img:nth-child(1){transform:translate3d(0,0,440px) scale(.8)}
+.caroussel img:nth-child(2){transform:rotateY(45deg) translateZ(440px) scale(.8)}
+.caroussel img:nth-child(3){transform:rotateY(90deg) translateZ(440px) scale(.8)}
+.caroussel img:nth-child(4){transform:rotateY(135deg) translateZ(440px) scale(.8)}
+.caroussel img:nth-child(5){transform:rotateY(180deg) translateZ(440px) scale(.8)}
+.caroussel img:nth-child(6){transform:rotateY(225deg) translateZ(440px) scale(.8)}
+.caroussel img:nth-child(7){transform:rotateY(270deg) translateZ(440px) scale(.8)}
+.caroussel img:nth-child(8){transform:rotateY(315deg) translateZ(440px) scale(.8)}
+
+.caroussel_diapo input[type=radio] + label {
+	
+cursor:pointer;
+background:hsl(203,77%,81%);
+display:inline-block;
+width:20px;
+border-radius:50%;
+height:20px
+	
+	}
+	
+.caroussel_diapo input[type=radio]:checked + label{background:hsl(203,77%,61%)}
+
+.caroussel_diapo label{background:hsl(203,77%,61%)}
+
+
+
+.caroussel_diapo input[name="rotation"]:checked ~ .contenu_carou .caroussel img:nth-child(n){
+	filter:drop-shadow(12px 12px 7px hsla(0,0%,0%,.5))
+	
+	}	
+
+/*gauche*/
+.caroussel_diapo #carou_un:checked ~ .contenu_carou .caroussel{transform:translateZ(-540px)}
+.caroussel_diapo #carou_deux:checked ~ .contenu_carou .caroussel{transform:translateZ(-540px) rotateY(-45deg)}
+.caroussel_diapo #carou_trois:checked ~ .contenu_carou .caroussel{transform:translateZ(-540px) rotateY(-90deg)}
+.caroussel_diapo #carou_quatre:checked ~ .contenu_carou .caroussel{transform:translateZ(-540px) rotateY(-135deg)}
+.caroussel_diapo #carou_cinq:checked ~ .contenu_carou .caroussel{transform:translateZ(-540px) rotateY(-180deg)}
+.caroussel_diapo #carou_six:checked ~ .contenu_carou .caroussel{transform:translateZ(-540px) rotateY(-225deg)}
+.caroussel_diapo #carou_sept:checked ~ .contenu_carou .caroussel{transform:translateZ(-540px) rotateY(-270deg)}
+.caroussel_diapo #carou_huit:checked ~ .contenu_carou .caroussel{transform:translateZ(-540px) rotateY(-315deg)}
+
+
+/*droite*/
+.caroussel_diapo #carou_un:checked ~ .contenu_carou .caroussel img:nth-child(1){transform:translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo #carou_deux:checked ~ .contenu_carou .caroussel img:nth-child(2){transform:rotateY(45deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo #carou_trois:checked ~ .contenu_carou .caroussel img:nth-child(3){transform:rotateY(90deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo #carou_quatre:checked ~ .contenu_carou .caroussel img:nth-child(4){transform:rotateY(135deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo #carou_cinq:checked ~ .contenu_carou .caroussel img:nth-child(5){transform:rotateY(180deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo #carou_six:checked ~ .contenu_carou .caroussel img:nth-child(6){transform:rotateY(225deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo #carou_sept:checked ~ .contenu_carou .caroussel img:nth-child(7){transform:rotateY(270deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo #carou_huit:checked ~ .contenu_carou .caroussel img:nth-child(8){transform:rotateY(315deg) translateZ(540px) scale(1);opacity:1}
+
+
+
+	
+	
+.caroussel_diapo1 input{
+	position:absolute;left:-9999px}
+    
+
+.caroussel_diapo1{	
+position:relative;
+text-align:center;
+margin:0;
+
+}
+
+
+.contenu_carou1 {
+
+width:400px;
+height: 265px;
+margin-left : 300px;
+
+perspective:4000px}
+
+
+.caroussel1{
+
+transform-style:preserve-3d;
+position:relative;
+text-align: center;
+width:400px;
+height:265px;
+transition:1s
+	
+	}
+
+.caroussel1 img {
+	
+position:absolute;
+top:0;left: 0;
+
+outline:1px solid transparent;
+backface-visibility:hidden;
+transition:1s
+	
+	}
+
+.caroussel1 img{filter:blur(3px);opacity:.8}	
+.caroussel1 img:nth-child(1){transform:translate3d(0,0,440px) scale(.8)}
+.caroussel1 img:nth-child(2){transform:rotateY(45deg) translateZ(440px) scale(.8)}
+.caroussel1 img:nth-child(3){transform:rotateY(90deg) translateZ(440px) scale(.8)}
+.caroussel1 img:nth-child(4){transform:rotateY(135deg) translateZ(440px) scale(.8)}
+.caroussel1 img:nth-child(5){transform:rotateY(180deg) translateZ(440px) scale(.8)}
+.caroussel1 img:nth-child(6){transform:rotateY(225deg) translateZ(440px) scale(.8)}
+.caroussel1 img:nth-child(7){transform:rotateY(270deg) translateZ(440px) scale(.8)}
+.caroussel1 img:nth-child(8){transform:rotateY(315deg) translateZ(440px) scale(.8)}
+
+.caroussel_diapo1 input[type=radio] + label {
+	
+cursor:pointer;
+background:hsl(203,77%,81%);
+display:inline-block;
+width:20px;
+border-radius:50%;
+height:20px
+	
+	}
+	
+.caroussel_diapo1 input[type=radio]:checked + label{background:hsl(203,77%,61%)}
+
+.caroussel_diapo1 label{background:hsl(203,77%,61%)}
+
+
+
+.caroussel_diapo1 input[name="rotation"]:checked ~ .contenu_carou1 .caroussel1 img:nth-child(n){
+	filter:drop-shadow(12px 12px 7px hsla(0,0%,0%,.5))
+	
+	}	
+
+/*gauche*/
+.caroussel_diapo1 #carou_neuf:checked ~ .contenu_carou1 .caroussel1{transform:translateZ(-540px)}
+.caroussel_diapo1 #carou_dix:checked ~ .contenu_carou1 .caroussel1{transform:translateZ(-540px) rotateY(-45deg)}
+.caroussel_diapo1 #carou_onze:checked ~ .contenu_carou1 .caroussel1{transform:translateZ(-540px) rotateY(-90deg)}
+.caroussel_diapo1 #carou_douze:checked ~ .contenu_carou1 .caroussel1{transform:translateZ(-540px) rotateY(-135deg)}
+.caroussel_diapo1 #carou_treize:checked ~ .contenu_carou1 .caroussel1{transform:translateZ(-540px) rotateY(-180deg)}
+.caroussel_diapo1 #carou_quatorze:checked ~ .contenu_carou1 .caroussel1{transform:translateZ(-540px) rotateY(-225deg)}
+.caroussel_diapo1 #carou_quinze:checked ~ .contenu_carou1 .caroussel1{transform:translateZ(-540px) rotateY(-270deg)}
+.caroussel_diapo1 #carou_seize:checked ~ .contenu_carou1 .caroussel1{transform:translateZ(-540px) rotateY(-315deg)}
+
+
+/*droite*/
+.caroussel_diapo1 #carou_neuf:checked ~ .contenu_carou1 .caroussel1 img:nth-child(1){transform:translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo1 #carou_dix:checked ~ .contenu_carou1 .caroussel1 img:nth-child(2){transform:rotateY(45deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo1 #carou_onze:checked ~ .contenu_carou1 .caroussel1 img:nth-child(3){transform:rotateY(90deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo1 #carou_douze:checked ~ .contenu_carou1 .caroussel1 img:nth-child(4){transform:rotateY(135deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo1 #carou_treize:checked ~ .contenu_carou1 .caroussel1 img:nth-child(5){transform:rotateY(180deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo1 #carou_quatorze:checked ~ .contenu_carou1 .caroussel1 img:nth-child(6){transform:rotateY(225deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo1 #carou_quinze:checked ~ .contenu_carou1 .caroussel1 img:nth-child(7){transform:rotateY(270deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo1 #carou_seize:checked ~ .contenu_carou1 .caroussel1 img:nth-child(8){transform:rotateY(315deg) translateZ(540px) scale(1);opacity:1}
+
+
+
+
+
+
+
+
+
+.caroussel_diapo2 input{
+	position:absolute;left:-9999px}
+    
+
+.caroussel_diapo2{	
+position:relative;
+text-align:center;
+margin:0;
+
+}
+
+
+.contenu_carou2 {
+
+width:400px;
+height: 265px;
+margin-left : 300px;
+
+perspective:4000px}
+
+
+.caroussel2{
+
+transform-style:preserve-3d;
+position:relative;
+text-align: center;
+width:400px;
+height:265px;
+transition:1s
+	
+	}
+
+.caroussel2 img {
+	
+position:absolute;
+top:0;left: 0;
+
+outline:1px solid transparent;
+backface-visibility:hidden;
+transition:1s
+	
+	}
+
+.caroussel2 img{filter:blur(3px);opacity:0.8}	
+.caroussel2 img:nth-child(1){transform:translate3d(0,0,440px) scale(.8)}
+.caroussel2 img:nth-child(2){transform:rotateY(45deg) translateZ(440px) scale(.8)}
+.caroussel2 img:nth-child(3){transform:rotateY(90deg) translateZ(440px) scale(.8)}
+.caroussel2 img:nth-child(4){transform:rotateY(135deg) translateZ(440px) scale(.8)}
+.caroussel2 img:nth-child(5){transform:rotateY(180deg) translateZ(440px) scale(.8)}
+.caroussel2 img:nth-child(6){transform:rotateY(225deg) translateZ(440px) scale(.8)}
+.caroussel2 img:nth-child(7){transform:rotateY(270deg) translateZ(440px) scale(.8)}
+.caroussel2 img:nth-child(8){transform:rotateY(315deg) translateZ(440px) scale(.8)}
+
+.caroussel_diapo2 input[type=radio] + label {
+	
+cursor:pointer;
+background:hsl(203,77%,81%);
+display:inline-block;
+width:20px;
+border-radius:50%;
+height:20px
+	
+	}
+	
+.caroussel_diapo2 input[type=radio]:checked + label{background:hsl(203,77%,61%)}
+
+.caroussel_diapo2 label{background:hsl(203,77%,61%)}
+
+.caroussel_diapo2 input[name="rotation"]:checked ~ .contenu_carou2 .caroussel2 img:nth-child(n){
+	filter:drop-shadow(12px 12px 7px hsla(0,0%,0%,.5))
+	
+	}	
+
+
+
+/*gauche*/
+.caroussel_diapo2 #carou_1:checked ~ .contenu_carou2 .caroussel2{transform:translateZ(-540px)}
+.caroussel_diapo2 #carou_2:checked ~ .contenu_carou2 .caroussel2{transform:translateZ(-540px) rotateY(-45deg)}
+.caroussel_diapo2 #carou_3:checked ~ .contenu_carou2 .caroussel2{transform:translateZ(-540px) rotateY(-90deg)}
+.caroussel_diapo2 #carou_4:checked ~ .contenu_carou2 .caroussel2{transform:translateZ(-540px) rotateY(-135deg)}
+.caroussel_diapo2 #carou_5:checked ~ .contenu_carou2 .caroussel2{transform:translateZ(-540px) rotateY(-180deg)}
+.caroussel_diapo2 #carou_6:checked ~ .contenu_carou2 .caroussel2{transform:translateZ(-540px) rotateY(-225deg)}
+.caroussel_diapo2 #carou_7:checked ~ .contenu_carou2 .caroussel2{transform:translateZ(-540px) rotateY(-270deg)}
+.caroussel_diapo2 #carou_8:checked ~ .contenu_carou2 .caroussel2{transform:translateZ(-540px) rotateY(-315deg)}
+
+
+/*droite*/
+.caroussel_diapo2 #carou_1:checked ~ .contenu_carou2 .caroussel2 img:nth-child(1){transform:translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo2 #carou_2:checked ~ .contenu_carou2 .caroussel2 img:nth-child(2){transform:rotateY(45deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo2 #carou_3:checked ~ .contenu_carou2 .caroussel2 img:nth-child(3){transform:rotateY(90deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo2 #carou_4:checked ~ .contenu_carou2 .caroussel2 img:nth-child(4){transform:rotateY(135deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo2 #carou_5:checked ~ .contenu_carou2 .caroussel2 img:nth-child(5){transform:rotateY(180deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo2 #carou_6:checked ~ .contenu_carou2 .caroussel2 img:nth-child(6){transform:rotateY(225deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo2 #carou_7:checked ~ .contenu_carou2 .caroussel2 img:nth-child(7){transform:rotateY(270deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo2 #carou_8:checked ~ .contenu_carou2 .caroussel2 img:nth-child(8){transform:rotateY(315deg) translateZ(540px) scale(1);opacity:1}
+
+
+
+
+
+
+
+
+
+
+.caroussel_diapo3 input{
+	position:absolute;left:-9999px}
+    
+
+.caroussel_diapo3{	
+position:relative;
+text-align:center;
+margin:0;
+
+}
+
+
+.contenu_carou3 {
+
+width:400px;
+height: 265px;
+margin-left : 300px;
+
+perspective:4000px}
+
+
+.caroussel3{
+
+transform-style:preserve-3d;
+position:relative;
+text-align: center;
+width:400px;
+height:265px;
+transition:1s
+	
+	}
+
+.caroussel3 img {
+	
+position:absolute;
+top:0;left: 0;
+
+outline:1px solid transparent;
+backface-visibility:hidden;
+transition:1s
+	
+	}
+
+.caroussel3 img{filter:blur(3px);opacity:.8}	
+.caroussel3 img:nth-child(1){transform:translate3d(0,0,440px) scale(.8)}
+.caroussel3 img:nth-child(2){transform:rotateY(45deg) translateZ(440px) scale(.8)}
+.caroussel3 img:nth-child(3){transform:rotateY(90deg) translateZ(440px) scale(.8)}
+.caroussel3 img:nth-child(4){transform:rotateY(135deg) translateZ(440px) scale(.8)}
+.caroussel3 img:nth-child(5){transform:rotateY(180deg) translateZ(440px) scale(.8)}
+.caroussel3 img:nth-child(6){transform:rotateY(225deg) translateZ(440px) scale(.8)}
+.caroussel3 img:nth-child(7){transform:rotateY(270deg) translateZ(440px) scale(.8)}
+.caroussel3 img:nth-child(8){transform:rotateY(315deg) translateZ(440px) scale(.8)}
+
+.caroussel_diapo3 input[type=radio] + label {
+	
+cursor:pointer;
+background:hsl(203,77%,81%);
+display:inline-block;
+width:20px;
+border-radius:50%;
+height:20px
+	
+	}
+	
+.caroussel_diapo3 input[type=radio]:checked + label{background:hsl(203,77%,61%)}
+
+.caroussel_diapo3 label{background:hsl(203,77%,61%)}
+
+
+
+.caroussel_diapo3 input[name="rotation"]:checked ~ .contenu_carou3 .caroussel3 img:nth-child(n){
+	filter:drop-shadow(12px 12px 7px hsla(0,0%,0%,.5))
+	
+	}	
+
+/*gauche*/
+.caroussel_diapo3 #carou_9:checked ~ .contenu_carou3 .caroussel3{transform:translateZ(-540px)}
+.caroussel_diapo3 #carou_10:checked ~ .contenu_carou3 .caroussel3{transform:translateZ(-540px) rotateY(-45deg)}
+.caroussel_diapo3 #carou_11:checked ~ .contenu_carou3 .caroussel3{transform:translateZ(-540px) rotateY(-90deg)}
+.caroussel_diapo3 #carou_12:checked ~ .contenu_carou3 .caroussel3{transform:translateZ(-540px) rotateY(-135deg)}
+.caroussel_diapo3 #carou_13:checked ~ .contenu_carou3 .caroussel3{transform:translateZ(-540px) rotateY(-180deg)}
+.caroussel_diapo3 #carou_14:checked ~ .contenu_carou3 .caroussel3{transform:translateZ(-540px) rotateY(-225deg)}
+.caroussel_diapo3 #carou_15:checked ~ .contenu_carou3 .caroussel3{transform:translateZ(-540px) rotateY(-270deg)}
+.caroussel_diapo3 #carou_16:checked ~ .contenu_carou3 .caroussel3{transform:translateZ(-540px) rotateY(-315deg)}
+
+
+/*droite*/
+.caroussel_diapo3 #carou_9:checked ~ .contenu_carou3 .caroussel3 img:nth-child(1){transform:translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo3 #carou_10:checked ~ .contenu_carou3 .caroussel3 img:nth-child(2){transform:rotateY(45deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo3 #carou_11:checked ~ .contenu_carou3 .caroussel3 img:nth-child(3){transform:rotateY(90deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo3 #carou_12:checked ~ .contenu_carou3 .caroussel3 img:nth-child(4){transform:rotateY(135deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo3 #carou_13:checked ~ .contenu_carou3 .caroussel3 img:nth-child(5){transform:rotateY(180deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo3 #carou_14:checked ~ .contenu_carou3 .caroussel3 img:nth-child(6){transform:rotateY(225deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo3 #carou_15:checked ~ .contenu_carou3 .caroussel3 img:nth-child(7){transform:rotateY(270deg) translateZ(540px) scale(1);opacity:1}
+.caroussel_diapo3 #carou_16:checked ~ .contenu_carou3 .caroussel3 img:nth-child(8){transform:rotateY(315deg) translateZ(540px) scale(1);opacity:1}
+
+.gallery1 {
+	margin: 5px;
+	border: 1px solid #ccc;
+	float: left;
+	width: 180px;
+  }
+  
+.gallery1:hover {
+	border: 1px solid #777;
+  }
+  
+.gallery1 img {
+	width: 100%;
+	height: auto;
+  }
+  
+.desc1 {
+	padding: 15px;
+	text-align: center;
+  }
+	
+
+.inf{
+	float: left;
+}
+  .a-img{
+	margin: 50px 0;
+	margin-left: 10px;
+	width: 48%;
+	padding: 0px;
+	border: 1px solid #f1f1f1;
+	border-radius: 20px;
+	background: #fff;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+
+ .a-img{
+	filter: blur(0);
+  }
+ .a-img:hover{
+	filter: blur(5px);
+  }
+  /*fin gal*/
+
 .gallery {
 
 	margin: 5px;
@@ -178,6 +676,24 @@ nav>ul li:hover .sous {
 }
 
 .faq-section{
+	margin: 40px 0;
+	width:100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+	border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+#corps faq-section{
+	margin: 40px 0;
+	width:100%;
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+	border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.data2{
 	margin: 40px 0;
 	width:100%;
     padding: 30px;
@@ -333,6 +849,29 @@ footer i{
 	color: #28cec0;
 }
 
+.data1 h2{
+	text-align:center;
+	font-weight:bold;
+	
+}
+.data1 h5{
+	text-align:center;
+	font-weight:bold;
+}
+.data1 li {
+	width: 32%;
+	margin-inline: auto;
+	text-align: center;
+	display: inline-block;
+	font-family: 'Lato';
+	padding: 0, 0;
+	border-right: solid 1px #bdc3c7;
+}
+
+
+
+
+
 .data li {
 	width: 32%;
 	margin-inline: auto;
@@ -341,6 +880,7 @@ footer i{
 	font-family: 'Lato';
 	padding: 0, 5em;
 	border-right: solid 1px #bdc3c7;
+	text-transform: uppercase;
 }
 
 .data p {

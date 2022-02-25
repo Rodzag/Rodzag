@@ -47,7 +47,7 @@ public class IndexController {
 	
 	@GetMapping("/accueil.html")
 	public String accueil() {
-		return "Pages/accueil";
+		return "Pages/index";
 	}
 	
 	@GetMapping("/all_stats.html")
@@ -66,7 +66,7 @@ public class IndexController {
 	}
 	
 	@PostMapping("/create_event.html")
-	public String resutForm(Event event, Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text ) {
+	public String resutForm(Event event, Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text, @RequestParam(defaultValue = "") String message ) {
 		
 		eventService.saveEvent(event);
 		
@@ -82,6 +82,7 @@ public class IndexController {
 		while(i>(size*j)) {
 			j++;
 		}
+		model.addAttribute("message", "Evenement "+event.getName()+" bien ajouté");
 		model.addAttribute("pageMax", j);
 		model.addAttribute("text", text);
 		
@@ -90,7 +91,7 @@ public class IndexController {
 	
 	
 	@GetMapping("/event_list.html")
-	public String EventPageG(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+	public String EventPageG(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text, @RequestParam(defaultValue = "") String message) {
 		List<Event> list2 = eventService.findByFind(text);
 		int i = list2.size();
 		List<EventPagination> list = eventPaginationService.findAll(page-1, size);
@@ -111,7 +112,7 @@ public class IndexController {
 	}
 	
 	@PostMapping("/event_list.html")
-	public String EventPageP(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+	public String EventPageP(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text, @RequestParam(defaultValue = "") String message) {
 
 		List<Event> list2 = eventService.findByFind(text);
 		int i = list2.size();
@@ -133,9 +134,17 @@ public class IndexController {
 
 	
 	@GetMapping("/edit")
-	public String edit(Model model, @RequestParam Integer d, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+	public String edit(Model model, @RequestParam Integer d) {
 		
-		Optional<Event> event = eventService.findById(d);
+		Event event = eventService.findById2(d);
+		model.addAttribute("event", event);
+		return "Pages/change_event";
+	}
+	
+	@GetMapping("/fEdit")
+	public String finEditG(Model model, @RequestParam Integer d, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text, @RequestParam(defaultValue = "") String message) {
+		
+		Event event = eventService.findById2(d);
 		eventService.updateEvent(event);
 		
 		List<Event> list2 = eventService.findByFind(text);
@@ -155,11 +164,18 @@ public class IndexController {
 		return "Pages/event_list";
 	}
 	
-	@GetMapping("/fEdit")
-	public String finEdit(Model model, @RequestParam Integer d, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+	@PostMapping("/fEdit")
+	public String finEditP(Event event, Model model, @RequestParam Integer d, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text, @RequestParam(defaultValue = "") String message) {
 		
-		Optional<Event> event = eventService.findById(d);
-		eventService.updateEvent(event);
+		Event event2 = eventService.findById2(d);
+		event2.setName(event.getName());
+		event2.setCity(event.getCity());
+		event2.setDuration(event.getDuration());
+		event2.setDate(event.getDate());
+		event2.setDescription(event.getDescription());
+		event2.setImportant(event.getImportant());
+		event2.setCategory(event.getCategory());
+		eventService.updateEvent(event2);
 		
 		List<Event> list2 = eventService.findByFind(text);
 		int i = list2.size();
@@ -175,11 +191,14 @@ public class IndexController {
 		}
 		model.addAttribute("pageMax", j);
 		model.addAttribute("text", text);
+		model.addAttribute("message", "Evenement "+event2.getName()+" bien modifié");
 		return "Pages/event_list";
 	}
 	
 	@GetMapping("/del")
-	public String del(Model model, @RequestParam Integer d, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+	public String del(Model model, @RequestParam Integer d, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text, @RequestParam(defaultValue = "") String message) {
+		Event event = eventService.findById2(d);
+		String name = event.getName();
 		eventService.deleteEvent(d);
 
 		List<Event> list2 = eventService.findByFind(text);
@@ -197,12 +216,13 @@ public class IndexController {
 		}
 		model.addAttribute("pageMax", j);
 		model.addAttribute("text", text);
+		model.addAttribute("message", "Evenement "+name+" bien annulé");
 		
 		return "Pages/event_list";
 	}
 	
 	@PostMapping("/cherche")
-	public String findP(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+	public String findP(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text, @RequestParam(defaultValue = "") String message) {
 
 		List<Event> list2 = eventService.findByFind(text);
 		int i = list2.size();
@@ -224,7 +244,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("/cherche")
-	public String findG(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text) {
+	public String findG(Model model, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "") String text, @RequestParam(defaultValue = "") String message) {
 	
 		List<Event> list2 = eventService.findByFind(text);
 		int i = list2.size();
@@ -264,8 +284,21 @@ public class IndexController {
 		return "Pages/galerie";
 	}
 	
-	@GetMapping("/info_event.html")
-	public String infoEvent() {
+	@GetMapping("/info_event")
+	public String infoEventG(Model model, @RequestParam Integer d) {
+
+		Event event = eventService.findById2(d);
+
+		model.addAttribute("event", event);
+		return "Pages/info_event";
+	}
+	
+	@PostMapping("/info_event")
+	public String infoEventP(Model model, @RequestParam Integer d) {
+
+		Event event = eventService.findById2(d);
+
+		model.addAttribute("event", event);
 		return "Pages/info_event";
 	}
 	

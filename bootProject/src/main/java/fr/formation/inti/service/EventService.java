@@ -25,6 +25,8 @@ public interface EventService {
 	
 	void deleteEvent(Integer id);
 	
+	Event findById2(Integer id);
+	
 	Optional<Event> findById(Integer id);
 
 
